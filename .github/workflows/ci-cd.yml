@@ -26,6 +26,7 @@ jobs:
 
     - name: Install backend dependencies
       run: |
+        mkdir backend 
         cd backend
         python -m venv venv
         source venv/bin/activate
@@ -33,6 +34,7 @@ jobs:
 
     - name: Install frontend dependencies
       run: |
+        mkdir frontend
         cd frontend
         npm install
 
