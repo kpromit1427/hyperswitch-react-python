@@ -39,4 +39,4 @@ jobs:
     - name: Run backend unit tests
       run: |
         source venv/bin/activate
-        pytest test/
+        pytest tests/
