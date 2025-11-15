@@ -35,3 +35,8 @@ jobs:
 
     - name: Build frontend
       run: npm run build
+      
+    - name: Run backend unit tests
+      run: |
+        source venv/bin/activate
+        pytest tests/
