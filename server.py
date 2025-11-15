@@ -6,6 +6,9 @@ import http.client
 import json
 import os
 from flask import Flask, render_template, jsonify, request
+from flask_cors import CORS
+
+
 
 app = Flask(__name__,
             static_folder='public',
@@ -17,6 +20,11 @@ def calculate_order_amount(items):
   # Calculate the order total on the server to prevent
   # people from directly manipulating the amount on the client
   return 1400
+
+#testing 
+@app.route('/')
+def index():
+    return 'Flask backend is running!'
 
 @app.route('/create-payment', methods=['POST'])
 def create_payment():

@@ -20,8 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "start-server": "cross-env FLASK_APP=server.py python -m flask run --port=4242",
     "start-client": "react-scripts start",
-    "start-server": "export FLASK_APP=server.py && python3 -m flask run --port=4242",
     "start": "concurrently \"npm run start-client\" \"npm run start-server\""
   },
   "eslintConfig": {
@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "cross-env": "^10.1.0"
   }
 }
