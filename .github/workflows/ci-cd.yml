@@ -37,6 +37,5 @@ jobs:
       run: npm run build
       
     - name: Run backend unit tests
-      run: |
-        source venv/bin/activate
-        pytest tests/
+      run: pytest test_server.py
+
