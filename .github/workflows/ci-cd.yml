@@ -60,12 +60,19 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           cd ~/hyperswitch-react-python
+
+          # Clean and recreate virtual environment
+          rm -rf venv
           python3 -m venv venv --system-site-packages
-          source venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install --break-system-packages -r requirements.txt
+
+          # Install dependencies using direct path
+          ./venv/bin/pip install --upgrade pip
+          ./venv/bin/pip install --break-system-packages -r requirements.txt
+
+          # Restart Flask
           pkill -f flask || true
-          nohup flask run --host=0.0.0.0 --port=4242 &
+          nohup ./venv/bin/python backend/server.py &
+
 
           cd ~/hyperswitch-react-python
           npm install
