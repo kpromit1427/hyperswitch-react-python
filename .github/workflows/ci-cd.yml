@@ -69,18 +69,16 @@ jobs:
           ./venv/bin/pip install --upgrade pip
           ./venv/bin/pip install --break-system-packages -r requirements.txt
 
-          # Restart Flask
-          pkill -f flask || true
-          nohup ./venv/bin/python backend/server.py > flask.log 2>&1 < /dev/null &
-          disown
-          sleep 2
-          echo "Flask restarted successfully"
+          cd ~/hyperswitch-react-python
+          rm -rf venv
+          python3 -m venv venv --system-site-packages
+          ./venv/bin/pip install --upgrade pip
+          ./venv/bin/pip install --break-system-packages -r requirements.txt
 
-
+          sudo systemctl restart flask-backend
 
           cd ~/hyperswitch-react-python
           npm install
           npm run build
           sudo cp -r build/* /var/www/html/
-
 
