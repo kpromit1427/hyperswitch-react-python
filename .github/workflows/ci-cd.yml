@@ -60,16 +60,6 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           cd ~/hyperswitch-react-python
-
-          # Clean and recreate virtual environment
-          rm -rf venv
-          python3 -m venv venv --system-site-packages
-
-          # Install dependencies using direct path
-          ./venv/bin/pip install --upgrade pip
-          ./venv/bin/pip install --break-system-packages -r requirements.txt
-
-          cd ~/hyperswitch-react-python
           rm -rf venv
           python3 -m venv venv --system-site-packages
           ./venv/bin/pip install --upgrade pip
@@ -77,8 +67,12 @@ jobs:
 
           sudo systemctl restart flask-backend
 
+          # Ensure Node.js is installed before this step
           cd ~/hyperswitch-react-python
           npm install
           npm run build
+
+          # Ensure Nginx is installed and /var/www/html exists
+          sudo mkdir -p /var/www/html
           sudo cp -r build/* /var/www/html/
 
