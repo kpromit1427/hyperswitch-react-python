@@ -71,7 +71,7 @@ jobs:
 
           # Restart Flask
           pkill -f flask || true
-          nohup ./venv/bin/python backend/server.py &
+          nohup ./venv/bin/python backend/server.py > flask.log 2>&1 &
 
 
           cd ~/hyperswitch-react-python
